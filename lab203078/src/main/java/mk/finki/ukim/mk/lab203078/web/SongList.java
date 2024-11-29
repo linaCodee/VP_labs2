@@ -14,7 +14,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "SongList",urlPatterns = {"/songs"})
+@WebServlet(name = "SongList",urlPatterns = {"/song"})
 public class SongList extends HttpServlet {
 
     private final SpringTemplateEngine springTemplateEngine;
@@ -30,7 +30,7 @@ public class SongList extends HttpServlet {
         IWebExchange webExchange=JakartaServletWebApplication.buildApplication(getServletContext()).buildExchange(req,resp);
         WebContext context=new WebContext(webExchange);
 
-        context.setVariable("song",songRepository.findAll());
+        context.setVariable("songs",songRepository.findAll());
         springTemplateEngine.process("songsList.html",context,resp.getWriter());
     }
 }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import static jakarta.servlet.http.HttpServletResponse.*;
 
-@WebServlet(name = "SongDetailsServlet",urlPatterns = "/detailsForSong")
+@WebServlet(name = "SongDetailsServlet",urlPatterns = "/detailsForSongs")
 public class SongDetailsServlet extends HttpServlet {
     private final SongServiceImpl songService;
     private final ArtistServiceImpl artistService;
@@ -37,7 +37,7 @@ public class SongDetailsServlet extends HttpServlet {
         String trackId=req.getParameter("trackId");
         String artistId=req.getParameter("artistId");
 
-        Song song=songService.findByTrackId(trackId);
+        Song song=songService.findByTrackId(Long.parseLong(trackId));
         Artist artist=artistService.findById(Long.parseLong(artistId));
         song.addArtist(artist);
 

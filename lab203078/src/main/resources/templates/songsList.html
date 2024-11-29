@@ -21,13 +21,16 @@
             and the displayed text should be Title: <songTitle>, Genre:<genre>, Release Year: <releaseYear> -->
     <form th:method="POST" th:action="@{/artists}">
         <div th:each="s : ${song}">
-            <input type="radio" name="songId" th:id="${s.getTrackId()}" th:value="${s.getTrackId()}">
-            <label th:for="${s.getTrackId()}" th:text="'Title: ' + ${s.getTitle()} + ', Genre: ' + ${s.getGenre()} + ', Release Year: ' + ${s.getReleaseYear()}"></label>
+            <input type="radio" name="songId" th:id="${s.trackId}" th:value="${s.trackId}">
+            <label th:for="${s.trackId}" th:text="'Title: ' + ${s.title} + ', Genre: ' + ${s.genre} + ', Release Year: ' + ${s.releaseYear} +', Album: '+${s.getAlbum().getName()}"></label>
+            <button><a style="color: black" th:href="@{/songs/edit-form/{songId}(songId=${s.trackId})}">Edit</a></button>
+            <button><a style="color: black" th:href="@{/songs/delete/{id}(id=${s.trackId})}">Delete</a></button>
             <br>
         </div>
         <br>
         <input type='submit' value='Submit'>
     </form>
+    <a href="/songs/add">Add new song</a>
 </main>
 </body>
 </html>

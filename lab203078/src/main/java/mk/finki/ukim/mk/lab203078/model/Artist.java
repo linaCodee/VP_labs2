@@ -5,7 +5,6 @@ import lombok.Generated;
 import lombok.Getter;
 
 @Data
-@Getter
 public class Artist {
     private Long id;
     private String firstName;
